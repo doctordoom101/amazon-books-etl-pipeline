@@ -1,0 +1,14 @@
+# Core Airflow
+apache-airflow==2.7.3
+
+# Database Provider
+apache-airflow-providers-postgres==5.4.0
+
+# Python Dependencies for your DAG
+requests==2.31.0
+pandas==2.0.3
+beautifulsoup4==4.12.2
+lxml==4.9.3  # Parser yang lebih cepat untuk BeautifulSoup
+
+# Untuk koneksi ke PostgreSQL
+psycopg2-binary==2.9.9
