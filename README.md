@@ -2,7 +2,7 @@
 # Amazon Books ETL Pipeline
 
 -----------
-![alt text](/design-pipeline.jng)
+![alt text](/design-pipeline.jpg)
 
 
 ## Create a virtual environment and activate it (optional)
