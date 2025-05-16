@@ -1,9 +1,17 @@
 
 # Amazon Books ETL Pipeline
 
------------
-![alt text](/design-pipeline.jpg)
+This project implements an ETL (Extract, Transform, Load) pipeline using **Apache Airflow** to scrape book data from **Amazon**, clean the results, and store them into a **PostgreSQL** database.
 
+![alt text](images/design-pipeline.jpg)
+
+## 🚀 Features
+
+- Automated scraping of Amazon search results for "Data Science" books.
+- Data cleaning and deduplication using `pandas`.
+- Data loading into PostgreSQL using Airflow's PostgresHook.
+- Daily scheduled job using Airflow DAGs.
+- Uses XCom to pass data between tasks.
 
 ## Create a virtual environment and activate it (optional)
 """
@@ -14,15 +22,15 @@
 """
 
 
-# 🔗Important links and Code
+## 🔗Important links and Code
 -----
 
-## Install Airflow 
+### Install Airflow 
 -----
 
 Follow steps in the link to setup airflow - https://airflow.apache.org/docs/apache-airflow/stable/howto/docker-compose/index.html
 
-## Install PGAdmin 
+### Install PGAdmin 
 -----
 Code to add in yaml file 
 
@@ -57,3 +65,18 @@ Code to add in yaml file
        - "5050:80"
        
 """
+
+## 🔧 Airflow Setup
+1. Add Postgres Connection in Airflow UI:
+- Go to Airflow UI → Admin → Connections → Create
+- Conn Id: books_connection
+- Conn Type: Postgres
+- Fill in host, schema, login, password, and port.
+
+2. Deploy the DAG:
+- Place amazon_books_dag.py in your Airflow DAGs folder.
+- Trigger the DAG manually or wait for the scheduled run.
+
+## ⚙️ DAG Workflow
+![alt text](images/fetch_and_store_amazon_books-graph.png)
+
