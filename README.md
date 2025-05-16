@@ -14,12 +14,9 @@ This project implements an ETL (Extract, Transform, Load) pipeline using **Apach
 - Uses XCom to pass data between tasks.
 
 ## Create a virtual environment and activate it (optional)
-"""
 
     python -m venv venv
     source venv/bin/activate
-
-"""
 
 
 ## 🔗Important links and Code
@@ -33,9 +30,6 @@ Follow steps in the link to setup airflow - https://airflow.apache.org/docs/apac
 ### Install PGAdmin 
 -----
 Code to add in yaml file 
-
-
-"""
 
     postgres:
       image: postgres:13
@@ -63,20 +57,29 @@ Code to add in yaml file
         PGADMIN_DEFAULT_PASSWORD: root  
       ports:
        - "5050:80"
-       
-"""
 
+       
 ## 🔧 Airflow Setup
-1. Add Postgres Connection in Airflow UI:
+**1. Add Postgres Connection in Airflow UI:**
 - Go to Airflow UI → Admin → Connections → Create
 - Conn Id: books_connection
 - Conn Type: Postgres
 - Fill in host, schema, login, password, and port.
 
-2. Deploy the DAG:
+**2. Deploy the DAG:**
 - Place amazon_books_dag.py in your Airflow DAGs folder.
 - Trigger the DAG manually or wait for the scheduled run.
 
+
 ## ⚙️ DAG Workflow
-![alt text](images/fetch_and_store_amazon_books-graph.png)
+1. `fetch_book_data`
+    -> Scrapes book data from Amazon.
+    -> Pushes the cleaned CSV to XCom.
+
+2. `create_table`
+    -> Ensures the books table exists in the PostgreSQL database.
+
+3. `insert_book_data`
+    -> Pulls CSV from XCom.
+    -> Parses and inserts into the books table.
 
